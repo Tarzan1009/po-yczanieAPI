@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from .models import *
+from django.contrib.auth.models import User
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -19,3 +21,28 @@ class CreateUserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+
+class UserSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    username = serializers.CharField(max_length=100)
+    # class Meta:
+    #     model = User
+    #     fields = ['id', 'username']
+
+
+class DebtMonetarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DebtMonetary
+        fields = ('__all__')
+
+
+class DebtItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DebtItem
+        fields = ('__all__')
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('user', 'friends')

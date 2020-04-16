@@ -1,20 +1,27 @@
 from django.conf import settings
 from django.db import models
 from datetime import date
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user', unique=True, on_delete=models.CASCADE)
-    friends = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+    friends = models.ManyToManyField("self", blank=True)
 
 
 class DebtMonetary(models.Model):
+
     creditor = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='creditorMon',
                                  on_delete=models.CASCADE)
-    debtor = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='debtorMon', on_delete=models.CASCADE)
+    debtor = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='debtorMon',
+                               on_delete=models.CASCADE)
     amount = models.IntegerField()
     date = models.DateField(default=date.today)
     isActive = models.BooleanField(default=True)
+    objects = models.Manager()
 
 
 class DebtItem(models.Model):
