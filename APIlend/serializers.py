@@ -30,6 +30,8 @@ class UserSerializer(serializers.Serializer):
     #     fields = ['id', 'username']
 
 
+
+
 class DebtMonetarySerializer(serializers.ModelSerializer):
     class Meta:
         model = DebtMonetary

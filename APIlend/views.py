@@ -57,6 +57,21 @@ class UserDetails(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+class DebtMonetaryList(generics.ListCreateAPIView):
+    queryset = DebtMonetary.objects.all()
+    serializer_class = DebtMonetarySerializer
+
+class DebtMonetaryDetails(generics.RetrieveAPIView):
+    serializer_class = DebtMonetarySerializer
+    queryset = DebtMonetary.objects.all()
+
+class ItemList(generics.ListCreateAPIView):
+    serializer_class = DebtItemSerializer
+    queryset = DebtItem.objects.all()
+
+class ItemDetails(generics.RetrieveAPIView):
+    serializer_class = DebtItemSerializer
+    queryset = DebtItem.objects.all()
 
 class FriendsList(generics.ListAPIView):
     serializer_class = UserProfileSerializer
@@ -69,9 +84,7 @@ class FriendsList(generics.ListAPIView):
         return friends
 
 
-class DebtMonetaryView(viewsets.ModelViewSet):
-    queryset = DebtMonetary.objects.all()
-    serializer_class = DebtMonetarySerializer
+
 
 
 class MyDebtsMonetary(generics.ListAPIView):

@@ -21,9 +21,13 @@ urlpatterns = [
     path('myCreditsItem', MyCreditsItem.as_view()),
     path('users', UserList.as_view()),
     path('users/<int:pk>', UserDetails.as_view()),
+    path('monetary', DebtMonetaryList.as_view()),
+    path('monetary/<int:pk>', DebtMonetaryDetails.as_view()),
+    path('item', ItemList.as_view()),
+    path('item/<int:pk>)', ItemDetails.as_view()),
 
     path('debtsItem', DebtsItemList.as_view()),
-    path('debtsMonetary', DebtsMonetaryList.as_view()),
+
     path('currentUser', current_user),
     path('myFriends', FriendsList.as_view()),
     path('debtsMonetarySum', MyDebtsMonetarySum),

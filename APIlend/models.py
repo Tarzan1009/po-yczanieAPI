@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     friends = models.ManyToManyField("self", blank=True)
 
 
+
 class DebtMonetary(models.Model):
 
     creditor = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='creditorMon',
