@@ -48,14 +48,14 @@ def current_user(request):
     return Response(serializer.data)
 
 
-class UserProfiles(generics.ListCreateAPIView):
-    serializer_class = UserProfileSerializer
-    queryset = UserProfile.objects.all()
-
 
 class UserList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+class UserDetails(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class FriendsList(generics.ListAPIView):
