@@ -91,17 +91,17 @@ class UserDebtMonetary(generics.ListCreateAPIView):
 class UserCreditMonetary(generics.ListCreateAPIView):
     serializer_class = DebtMonetarySerializer
     def get_queryset(self, *args, **kwargs):
-        return DebtMonetary.objects.filters(creditor=self.kwargs['pk'])
+        return DebtMonetary.objects.filter(creditor=self.kwargs['pk'])
 
 class UserDebtItem(generics.ListCreateAPIView):
     serializer_class = DebtItemSerializer
     def get_queryset(self, *args, **kwargs):
-        return DebtItem.objects.filters(debtor=self.kwargs['pk'])
+        return DebtItem.objects.filter(debtor=self.kwargs['pk'])
 
 class UserCreditItem(generics.ListCreateAPIView):
     serializer_class = DebtItemSerializer
     def get_queryset(self, *args, **kwargs):
-        return DebtItem.objects.filters(creditor=self.kwargs['pk'])
+        return DebtItem.objects.filter(creditor=self.kwargs['pk'])
 
 class MyCreditsItem(generics.ListAPIView):
     serializer_class = DebtItemSerializer
