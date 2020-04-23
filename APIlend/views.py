@@ -103,48 +103,43 @@ class UserCreditItem(generics.ListCreateAPIView):
     def get_queryset(self, *args, **kwargs):
         return DebtItem.objects.filter(creditor=self.kwargs['pk'])
 
-class MyCreditsItem(generics.ListAPIView):
+class UserCreditItem(generics.ListCreateAPIView):
     serializer_class = DebtItemSerializer
-
-    def get_queryset(self):
-        user = self.request.user
-        return DebtItem.objects.filter(creditor=user)
+    def get_queryset(self, *args, **kwargs):
+        return DebtItem.objects.filter(creditor=self.kwargs['pk'])
 
 
-class MyDebtsMonetaryWith(generics.ListAPIView):
+class UserDebtMonetaryWith(generics.ListAPIView):
     serializer_class = DebtMonetarySerializer
 
     def get_queryset(self):
-        user = self.request.user
-        username = self.kwargs['username']
-        return DebtMonetary.objects.filter(debtor=username).filter(creditor__username=username)
+
+        return DebtMonetary.objects.filter(debtor=self.kwargs['pk1'], creditor=self.kwargs['pk2'])
 
 
-class MyCreditsMonetaryWith(generics.ListAPIView):
+class UserCreditMonetaryWith(generics.ListAPIView):
     serializer_class = DebtMonetarySerializer
 
     def get_queryset(self):
-        user = self.request.user
-        username = self.kwargs['username']
-        return DebtMonetary.objects.filter(creditor=username).filter(debtor__username=username)
+
+        return DebtMonetary.objects.filter(creditor=self.kwargs['pk1'], debtor=self.kwargs['pk2'])
 
 
-class MyDebtsItemWith(generics.ListAPIView):
+
+class UserDebtItemWith(generics.ListAPIView):
     serializer_class = DebtItemSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        username = self.kwargs['username']
-        return DebtItem.objects.filter(debtor=username).filter(creditor__username=username)
+
+        return DebtItem.objects.filter(debtor=self.kwargs['pk1'], creditor=self.kwargs['pk2'])
 
 
-class MyCreditsItemWith(generics.ListAPIView):
+class UserCreditItemWith(generics.ListAPIView):
     serializer_class = DebtItemSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        username = self.kwargs['username']
-        return DebtItem.objects.filter(creditor=username).filter(debtor__username=username)
+
+        return DebtItem.objects.filter(creditor=self.kwargs['pk1'], debtor=self.kwargs['pk2'])
 
 
 class DebtsMonetaryList(generics.ListCreateAPIView):
@@ -155,6 +150,7 @@ class DebtsMonetaryList(generics.ListCreateAPIView):
 class DebtsItemList(generics.ListCreateAPIView):
     serializer_class = DebtItemSerializer
     queryset = DebtItem.objects.all()
+
 
 
 @api_view(['GET'])
