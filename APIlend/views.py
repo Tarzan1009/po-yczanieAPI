@@ -83,33 +83,25 @@ class FriendsList(generics.ListAPIView):
         friends = friends_profiles.user.get()
         return friends
 
-
-
-
-
-class MyDebtsMonetary(generics.ListAPIView):
+class UserDebtMonetary(generics.ListCreateAPIView):
     serializer_class = DebtMonetarySerializer
+    def get_queryset(self, *args, **kwargs):
+        return DebtMonetary.objects.filter(debtor=self.kwargs['pk'])
 
-    def get_queryset(self):
-        user = self.request.user
-        return DebtMonetary.objects.filter(debtor=user)
-
-
-class MyCreditsMonetary(generics.ListAPIView):
+class UserCreditMonetary(generics.ListCreateAPIView):
     serializer_class = DebtMonetarySerializer
+    def get_queryset(self, *args, **kwargs):
+        return DebtMonetary.objects.filters(creditor=self.kwargs['pk'])
 
-    def get_queryset(self):
-        user = self.request.user
-        return DebtMonetary.objects.filter(creditor=user)
-
-
-class MyDebtsItem(generics.ListAPIView):
+class UserDebtItem(generics.ListCreateAPIView):
     serializer_class = DebtItemSerializer
+    def get_queryset(self, *args, **kwargs):
+        return DebtItem.objects.filters(debtor=self.kwargs['pk'])
 
-    def get_queryset(self):
-        user = self.request.user
-        return DebtItem.objects.filter(debtor=user)
-
+class UserCreditItem(generics.ListCreateAPIView):
+    serializer_class = DebtItemSerializer
+    def get_queryset(self, *args, **kwargs):
+        return DebtItem.objects.filters(creditor=self.kwargs['pk'])
 
 class MyCreditsItem(generics.ListAPIView):
     serializer_class = DebtItemSerializer
