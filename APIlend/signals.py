@@ -6,7 +6,7 @@ from django.db import models
 def create_profile(sender, **kw):
     user = kw["instance"]
     if kw["created"]:
-        profile = UserProfile(user=user)
+        profile = UserProfile(user=user, username=user.username)
         profile.save()
 
 post_save.connect(create_profile, sender=User, dispatch_uid="users-profilecreation-signal")

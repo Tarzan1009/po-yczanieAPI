@@ -30,6 +30,10 @@ class UserSerializer(serializers.Serializer):
     #     fields = ['id', 'username']
 
 
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('__all__')
 
 
 class DebtMonetarySerializer(serializers.ModelSerializer):
@@ -42,9 +46,3 @@ class DebtItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = DebtItem
         fields = ('__all__')
-
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = ('user', 'friends')
