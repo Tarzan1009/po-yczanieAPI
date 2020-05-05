@@ -20,21 +20,21 @@ urlpatterns = [
     path('users/<int:pk>/friends', UserFriends.as_view()),
     path('users/<int:pk>/sum', MonetarySum),
 
-    path('users/<int:pk>/monetaryDebts', UserDebtMonetary.as_view()),
-    path('users/<int:pk1>/monetaryDebts/<int:pk2>', UserDebtMonetaryWith.as_view()),
-    path('users/<int:pk>/monetaryDebts/sum', DebtsMonetarySum),
+    path('users/<int:pk>/monetary_debts', UserDebtMonetary.as_view()),
+    path('users/<int:pk1>/monetary_debts/<int:pk2>', UserDebtMonetaryWith.as_view()),
+    path('users/<int:pk>/monetary_debts/sum', DebtsMonetarySum),
 
-    path('users/<int:pk>/monetaryCredits', UserCreditMonetary.as_view()),
-    path('users/<int:pk1>/monetaryCredits/<int:pk2>', UserCreditMonetaryWith.as_view()),
-    path('users/<int:pk>/monetaryCredits/sum', CreditsMonetarySum),
+    path('users/<int:pk>/monetary_credits', UserCreditMonetary.as_view()),
+    path('users/<int:pk1>/monetary_credits/<int:pk2>', UserCreditMonetaryWith.as_view()),
+    path('users/<int:pk>/monetary_credits/sum', CreditsMonetarySum),
 
-    path('users/<int:pk>/itemDebts', UserDebtItem.as_view()),
-    path('users/<int:pk1>/itemDebts/<int:pk2>', UserDebtItemWith.as_view()),
-    path('users/<int:pk>/itemDebts/count', DebtsItemCount),
+    path('users/<int:pk>/item_debts', UserDebtItem.as_view()),
+    path('users/<int:pk1>/item_debts/<int:pk2>', UserDebtItemWith.as_view()),
+    path('users/<int:pk>/item_debts/count', DebtsItemCount),
 
-    path('users/<int:pk>/itemCredits', UserCreditItem.as_view()),
-    path('users/<int:pk1>/itemCredits/<int:pk2>', UserCreditItemWith.as_view()),
-    path('users/<int:pk>/itemCredits/count', CreditsItemCount),
+    path('users/<int:pk>/item_credits', UserCreditItem.as_view()),
+    path('users/<int:pk1>/item_credits/<int:pk2>', UserCreditItemWith.as_view()),
+    path('users/<int:pk>/item_credits/count', CreditsItemCount),
 
     path('monetary', MonetaryList.as_view()),
     path('monetary/<int:pk>', MonetaryDetails.as_view()),
@@ -42,5 +42,5 @@ urlpatterns = [
     path('item', ItemList.as_view()),
     path('item/<int:pk>)', ItemDetails.as_view()),
 
-    path('currentUser', CurrentUser),
+    path('current_user', CurrentUser),
 ]
