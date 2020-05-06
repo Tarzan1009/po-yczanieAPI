@@ -19,6 +19,7 @@ urlpatterns = [
     path('users/<int:pk>', UserDetails.as_view()),
     path('users/<int:pk>/friends', UserFriends.as_view()),
     path('users/<int:pk>/sum', MonetarySum),
+    path('users/<int:pk1>/sum/<int:pk2>', MonetarySumWith),
 
     path('users/<int:pk>/monetary_debts', UserDebtMonetary.as_view()),
     path('users/<int:pk1>/monetary_debts/<int:pk2>', UserDebtMonetaryWith.as_view()),
