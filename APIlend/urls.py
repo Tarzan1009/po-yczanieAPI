@@ -46,7 +46,7 @@ urlpatterns = [
     path('monetary/<int:pk>', MonetaryDetails.as_view()),
 
     path('item', ItemList.as_view()),
-    path('item/<int:pk>)', ItemDetails.as_view()),
+    path('item/<int:pk>', ItemDetails.as_view()),
 
     path('current_user', CurrentUser),
 ]
