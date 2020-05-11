@@ -11,6 +11,7 @@ from django.db.models import Sum
 from django.http import HttpResponse, JsonResponse
 from .serializers import *
 from .models import *
+from django.db.models import Q
 
 
 class CreateUserAPIView(CreateAPIView):
@@ -90,6 +91,20 @@ class CurrentUser(generics.ListAPIView):
         return user_profile
 
 
+class UserMonetary(generics.ListCreateAPIView):
+    serializer_class = DebtMonetarySerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return DebtMonetary.objects.filter(Q(debtor=self.kwargs['pk']) | Q(creditor=self.kwargs['pk']))
+
+
+class UserMonetaryWith(generics.ListCreateAPIView):
+    serializer_class = DebtMonetarySerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return DebtMonetary.objects.filter((Q(debtor=self.kwargs['pk1']) & Q(creditor=self.kwargs['pk2'])) | (Q(creditor=self.kwargs['pk']) & Q(debtor=self.kwargs['pk2'])))
+
+
 class UserDebtMonetary(generics.ListCreateAPIView):
     serializer_class = DebtMonetarySerializer
 
@@ -116,6 +131,20 @@ class UserCreditMonetaryWith(generics.ListAPIView):
 
     def get_queryset(self):
         return DebtMonetary.objects.filter(creditor=self.kwargs['pk1'], debtor=self.kwargs['pk2'])
+
+
+class UserItem(generics.ListCreateAPIView):
+    serializer_class = DebtItemSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return DebtItem.objects.filter(Q(debtor=self.kwargs['pk']) | Q(creditor=self.kwargs['pk']))
+
+
+class UserItemWith(generics.ListCreateAPIView):
+    serializer_class = DebtItemSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return DebtItem.objects.filter((Q(debtor=self.kwargs['pk1']) & Q(creditor=self.kwargs['pk2'])) | (Q(creditor=self.kwargs['pk']) & Q(debtor=self.kwargs['pk2'])))
 
 
 class UserDebtItem(generics.ListCreateAPIView):

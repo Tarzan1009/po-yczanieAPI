@@ -18,24 +18,29 @@ urlpatterns = [
     path('users', UserList.as_view()),
     path('users/<int:pk>', UserDetails.as_view()),
     path('users/<int:pk>/friends', UserFriends.as_view()),
-    path('users/<int:pk>/sum', MonetarySum),
-    path('users/<int:pk1>/sum/<int:pk2>', MonetarySumWith),
 
-    path('users/<int:pk>/monetary_debts', UserDebtMonetary.as_view()),
-    path('users/<int:pk1>/monetary_debts/<int:pk2>', UserDebtMonetaryWith.as_view()),
-    path('users/<int:pk>/monetary_debts/sum', DebtsMonetarySum),
+    path('users/<int:pk>/monetary', UserMonetary.as_view()),
+    path('users/<int:pk>/monetary/sum', MonetarySum),
+    path('users/<int:pk1>/monetary/<int:pk2>', UserMonetaryWith.as_view()),
+    path('users/<int:pk1>/monetary/sum/<int:pk2>', MonetarySumWith),
 
-    path('users/<int:pk>/monetary_credits', UserCreditMonetary.as_view()),
-    path('users/<int:pk1>/monetary_credits/<int:pk2>', UserCreditMonetaryWith.as_view()),
-    path('users/<int:pk>/monetary_credits/sum', CreditsMonetarySum),
+    path('users/<int:pk>/monetary/debts', UserDebtMonetary.as_view()),
+    path('users/<int:pk1>/monetary/debts/<int:pk2>', UserDebtMonetaryWith.as_view()),
+    path('users/<int:pk>/monetary/debts/sum', DebtsMonetarySum),
 
-    path('users/<int:pk>/item_debts', UserDebtItem.as_view()),
-    path('users/<int:pk1>/item_debts/<int:pk2>', UserDebtItemWith.as_view()),
-    path('users/<int:pk>/item_debts/count', DebtsItemCount),
+    path('users/<int:pk>/monetary/credits', UserCreditMonetary.as_view()),
+    path('users/<int:pk1>/monetary/credits/<int:pk2>', UserCreditMonetaryWith.as_view()),
+    path('users/<int:pk>/monetary/credits/sum', CreditsMonetarySum),
 
-    path('users/<int:pk>/item_credits', UserCreditItem.as_view()),
-    path('users/<int:pk1>/item_credits/<int:pk2>', UserCreditItemWith.as_view()),
-    path('users/<int:pk>/item_credits/count', CreditsItemCount),
+    path('users/<int:pk>/item', UserItem.as_view()),
+
+    path('users/<int:pk>/item/debts', UserDebtItem.as_view()),
+    path('users/<int:pk1>/item/debts/<int:pk2>', UserDebtItemWith.as_view()),
+    path('users/<int:pk>/item/debts/count', DebtsItemCount),
+
+    path('users/<int:pk>/item/credits', UserCreditItem.as_view()),
+    path('users/<int:pk1>/item/credits/<int:pk2>', UserCreditItemWith.as_view()),
+    path('users/<int:pk>/item/credits/count', CreditsItemCount),
 
     path('monetary', MonetaryList.as_view()),
     path('monetary/<int:pk>', MonetaryDetails.as_view()),
