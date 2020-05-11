@@ -7,5 +7,5 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'APIlend/', include('APIlend.urls')),
+    url(r'api/', include('APIlend.urls')),
 ]
