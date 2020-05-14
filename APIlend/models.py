@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user', unique=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user', unique=True, blank=True, null=True, on_delete=models.CASCADE)
     username = models.CharField(max_length=30)
     friends = models.ManyToManyField("self", blank=True)
 
@@ -31,5 +31,5 @@ class DebtItem(models.Model):
     date = models.DateField(default=date.today)
     deadline = models.DateField(blank=True, null=True)
     info = models.CharField(max_length=280)
-    image = models.ImageField(upload_to='pics', blank=True)
+    image = models.ImageField(upload_to='', blank=True)
     isActive = models.BooleanField(default=True)

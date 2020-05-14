@@ -3,6 +3,7 @@ from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 from .views import *
 from django.conf.urls import include
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^auth/login/$',
@@ -46,7 +47,7 @@ urlpatterns = [
     path('monetary/<int:pk>', MonetaryDetails.as_view()),
 
     path('item', ItemList.as_view()),
-    path('item/<int:pk>)', ItemDetails.as_view()),
+    path('item/<int:pk>', ItemDetails.as_view()),
 
     path('current_user', CurrentUser),
 ]
