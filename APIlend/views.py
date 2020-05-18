@@ -144,7 +144,7 @@ class UserItemWith(generics.ListCreateAPIView):
     serializer_class = DebtItemSerializer
 
     def get_queryset(self, *args, **kwargs):
-        return DebtItem.objects.filter((Q(debtor=self.kwargs['pk1']) & Q(creditor=self.kwargs['pk2'])) | (Q(creditor=self.kwargs['pk']) & Q(debtor=self.kwargs['pk2'])))
+        return DebtItem.objects.filter((Q(debtor=self.kwargs['pk1']) & Q(creditor=self.kwargs['pk2'])) | (Q(creditor=self.kwargs['pk1']) & Q(debtor=self.kwargs['pk2'])))
 
 
 class UserDebtItem(generics.ListCreateAPIView):
@@ -180,7 +180,7 @@ class SearchUserList(generics.ListAPIView):
     def get_queryset(self):
 
         username = self.kwargs['username']
-        return UserProfile.objects.filter(UserProfile__username=username)
+        return UserProfile.objects.filter(username=username)
 
 
 

@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^auth/logout/$',
         LogoutUserAPIView.as_view(),
         name='auth_user_logout'),
+    url('^users/(?P<username>.+)/$', SearchUserList.as_view()),
+
 
     path('users', UserList.as_view()),
     path('users/<int:pk>', UserDetails.as_view()),
@@ -34,6 +36,7 @@ urlpatterns = [
     path('users/<int:pk>/monetary/credits/sum', CreditsMonetarySum),
 
     path('users/<int:pk>/item', UserItem.as_view()),
+    path('users/<int:pk1>/item/<int:pk2>', UserItemWith.as_view()),
 
     path('users/<int:pk>/item/debts', UserDebtItem.as_view()),
     path('users/<int:pk1>/item/debts/<int:pk2>', UserDebtItemWith.as_view()),
