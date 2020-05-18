@@ -174,6 +174,17 @@ class UserCreditItemWith(generics.ListAPIView):
     def get_queryset(self):
         return DebtItem.objects.filter(creditor=self.kwargs['pk1'], debtor=self.kwargs['pk2'])
 
+class SearchUserList(generics.ListAPIView):
+    serializer_class = UserProfileSerializer
+
+    def get_queryset(self):
+
+        queryset = UserProfile.objects.all()
+        username = self.request.query_params.get('username', None)
+        if username is not None:
+            queryset = queryset.filter(purchaser__username=username)
+        return queryset
+
 
 @api_view(['GET'])
 def DebtsMonetarySum(request, *args, **kwargs):
