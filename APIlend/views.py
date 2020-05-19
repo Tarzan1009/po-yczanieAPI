@@ -186,28 +186,28 @@ class SearchUserList(generics.ListAPIView):
 
 @api_view(['GET'])
 def DebtsMonetarySum(request, *args, **kwargs):
-    mySum = DebtMonetary.objects.filter(debtor=kwargs['pk']).aggregate(Sum('amount'))
-    return Response(mySum)
+    mySum = DebtMonetary.objects.filter(debtor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
+    return Response({'sum': mySum})
 
 
 @api_view(['GET'])
 def CreditsMonetarySum(request, *args, **kwargs):
-    mySum = DebtMonetary.objects.filter(creditor=kwargs['pk']).aggregate(Sum('amount'))
-    return Response(mySum)
+    mySum = DebtMonetary.objects.filter(creditor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
+    return Response({'sum': mySum})
 
 
 @api_view(['GET'])
 def MonetarySum(request, *args, **kwargs):
-    credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk']).aggregate(Sum('amount'))
-    debts_sum = DebtMonetary.objects.filter(debtor=kwargs['pk']).aggregate(Sum('amount'))
+    credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
+    debts_sum = DebtMonetary.objects.filter(debtor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
     mySum = credits_sum["amount__sum"] - debts_sum["amount__sum"]
     return Response({'sum': mySum})
 
 @api_view(['GET'])
 def MonetarySumWith(request, *args, **kwargs):
-    credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk1'], debtor=kwargs['pk2']).aggregate(Sum('amount'))
-    debts_sum = DebtMonetary.objects.filter(creditor=kwargs['pk2'], debtor=kwargs['pk1']).aggregate(Sum('amount'))
-    mySum = credits_sum["amount__sum"] - debts_sum["amount__sum"]
+    credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk1'], debtor=kwargs['pk2']).aggregate(Sum('amount'))["amount__sum"] or 0
+    debts_sum = DebtMonetary.objects.filter(creditor=kwargs['pk2'], debtor=kwargs['pk1']).aggregate(Sum('amount'))["amount__sum"] or 0
+    mySum = credits_sum - debts_sum
     return Response({'sum': mySum})
 
 
