@@ -30,6 +30,6 @@ class DebtItem(models.Model):
     debtor = models.ForeignKey(UserProfile, null=True, related_name='debtorItem', on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
     deadline = models.DateField(blank=True, null=True)
-    info = models.CharField(max_length=280)
+    info = models.CharField(max_length=280, blank=True, null = True)
     image = models.ImageField(upload_to='', blank=True)
     isActive = models.BooleanField(default=True)
