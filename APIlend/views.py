@@ -200,7 +200,7 @@ def CreditsMonetarySum(request, *args, **kwargs):
 def MonetarySum(request, *args, **kwargs):
     credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
     debts_sum = DebtMonetary.objects.filter(debtor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
-    mySum = credits_sum["amount__sum"] - debts_sum["amount__sum"]
+    mySum = credits_sum - debts_sum
     return Response({'sum': mySum})
 
 @api_view(['GET'])
