@@ -46,3 +46,8 @@ class DebtItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = DebtItem
         fields = ('__all__')
+
+class PropositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Proposition
+        fields = ('__all__')

@@ -52,5 +52,11 @@ urlpatterns = [
     path('item', ItemList.as_view()),
     path('item/<int:pk>', ItemDetails.as_view()),
 
+    path('proposition', PropositionList.as_view()),
+    path('proposition/<int:pk>', PropositionDetails.as_view()),
+
+    path('users/<int:pk>/proposition/sender', UserPropositionSender.as_view()),
+    path('users/<int:pk>/proposition/receiver', UserPropositionReceiver.as_view()),
+
     path('current_user', CurrentUser),
 ]

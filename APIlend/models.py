@@ -33,3 +33,11 @@ class DebtItem(models.Model):
     info = models.CharField(max_length=280, blank=True, null = True)
     image = models.ImageField(upload_to='', blank=True)
     isActive = models.BooleanField(default=True)
+
+
+class Proposition(models.Model):
+    sender = models.ForeignKey(UserProfile, null = True, related_name='sendProposition', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(UserProfile, null=True, related_name='receiveProposition', on_delete=models.CASCADE)
+    isActive = models.BooleanField(default=True)
+    monetary = models.ForeignKey(DebtMonetary, null = True, blank = True, on_delete=models.CASCADE)
+    item = models.ForeignKey(DebtItem, null=True, blank=True, on_delete=models.CASCADE)

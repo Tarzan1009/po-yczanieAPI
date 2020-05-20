@@ -182,7 +182,26 @@ class SearchUserList(generics.ListAPIView):
         username = self.kwargs['username']
         return UserProfile.objects.filter(username=username)
 
+class PropositionList(generics.ListCreateAPIView):
+    serializer_class = PropositionSerializer
+    queryset = Proposition.objects.all()
 
+
+class PropositionDetails(generics.RetrieveAPIView):
+    serializer_class = PropositionSerializer
+    queryset = Proposition.objects.all()
+
+class UserPropositionSender(generics.ListCreateAPIView):
+    serializer_class = PropositionSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return Proposition.objects.filter(sender=self.kwargs['pk'])
+
+class UserPropositionReceiver(generics.ListCreateAPIView):
+    serializer_class = PropositionSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return Proposition.objects.filter(receiver=self.kwargs['pk'])
 
 @api_view(['GET'])
 def DebtsMonetarySum(request, *args, **kwargs):
