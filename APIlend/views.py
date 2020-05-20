@@ -205,38 +205,39 @@ class UserPropositionReceiver(generics.ListCreateAPIView):
 
 @api_view(['GET'])
 def DebtsMonetarySum(request, *args, **kwargs):
-    mySum = DebtMonetary.objects.filter(debtor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
+    mySum = DebtMonetary.objects.filter(debtor=kwargs['pk'], isActive=True).aggregate(Sum('amount'))["amount__sum"] or 0
     return Response({'sum': mySum})
+
 
 
 @api_view(['GET'])
 def CreditsMonetarySum(request, *args, **kwargs):
-    mySum = DebtMonetary.objects.filter(creditor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
+    mySum = DebtMonetary.objects.filter(creditor=kwargs['pk'], isActive=True).aggregate(Sum('amount'))["amount__sum"] or 0
     return Response({'sum': mySum})
 
 
 @api_view(['GET'])
 def MonetarySum(request, *args, **kwargs):
-    credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
-    debts_sum = DebtMonetary.objects.filter(debtor=kwargs['pk']).aggregate(Sum('amount'))["amount__sum"] or 0
+    credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk'], isActive=True).aggregate(Sum('amount'))["amount__sum"] or 0
+    debts_sum = DebtMonetary.objects.filter(debtor=kwargs['pk'], isActive=True).aggregate(Sum('amount'))["amount__sum"] or 0
     mySum = credits_sum - debts_sum
     return Response({'sum': mySum})
 
 @api_view(['GET'])
 def MonetarySumWith(request, *args, **kwargs):
-    credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk1'], debtor=kwargs['pk2']).aggregate(Sum('amount'))["amount__sum"] or 0
-    debts_sum = DebtMonetary.objects.filter(creditor=kwargs['pk2'], debtor=kwargs['pk1']).aggregate(Sum('amount'))["amount__sum"] or 0
+    credits_sum = DebtMonetary.objects.filter(creditor=kwargs['pk1'], debtor=kwargs['pk2'], isActive=True).aggregate(Sum('amount'))["amount__sum"] or 0
+    debts_sum = DebtMonetary.objects.filter(creditor=kwargs['pk2'], debtor=kwargs['pk1'], isActive=True).aggregate(Sum('amount'))["amount__sum"] or 0
     mySum = credits_sum - debts_sum
     return Response({'sum': mySum})
 
 
 @api_view(['GET'])
 def DebtsItemCount(request, *args, **kwargs):
-    myCount = DebtItem.objects.filter(debtor=kwargs['pk']).count()
+    myCount = DebtItem.objects.filter(debtor=kwargs['pk'], isActive=True).count()
     return Response({'count': myCount})
 
 
 @api_view(['GET'])
 def CreditsItemCount(request, *args, **kwargs):
-    myCount = DebtItem.objects.filter(creditor=kwargs['pk']).count()
+    myCount = DebtItem.objects.filter(creditor=kwargs['pk'], isActive=True).count()
     return Response({'count': myCount})
