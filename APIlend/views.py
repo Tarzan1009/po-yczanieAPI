@@ -67,7 +67,7 @@ class MonetaryList(generics.ListCreateAPIView):
     serializer_class = DebtMonetarySerializer
 
 
-class MonetaryDetails(generics.RetrieveAPIView):
+class MonetaryDetails(generics.RetrieveUpdateAPIView):
     serializer_class = DebtMonetarySerializer
     queryset = DebtMonetary.objects.all()
 
@@ -77,7 +77,7 @@ class ItemList(generics.ListCreateAPIView):
     queryset = DebtItem.objects.all()
 
 
-class ItemDetails(generics.RetrieveAPIView):
+class ItemDetails(generics.RetrieveUpdateAPIView):
     serializer_class = DebtItemSerializer
     queryset = DebtItem.objects.all()
 
@@ -187,7 +187,7 @@ class PropositionList(generics.ListCreateAPIView):
     queryset = Proposition.objects.all()
 
 
-class PropositionDetails(generics.RetrieveAPIView):
+class PropositionDetails(generics.RetrieveUpdateAPIView):
     serializer_class = PropositionSerializer
     queryset = Proposition.objects.all()
 
