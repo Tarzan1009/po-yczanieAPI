@@ -20,7 +20,7 @@ class DebtMonetary(models.Model):
     # amount = models.DecimalField(decimal_places=2, max_digits=15)
     amount = models.IntegerField()
     date = models.DateField(default=date.today)
-    isActive = models.BooleanField(default=True)
+    isActive = models.BooleanField(default=False)
     objects = models.Manager()
 
 
@@ -32,7 +32,7 @@ class DebtItem(models.Model):
     deadline = models.DateField(blank=True, null=True)
     info = models.CharField(max_length=280, blank=True, null = True)
     image = models.ImageField(upload_to='', blank=True)
-    isActive = models.BooleanField(default=True)
+    isActive = models.BooleanField(default=False)
 
 
 class Proposition(models.Model):
