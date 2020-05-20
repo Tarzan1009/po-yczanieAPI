@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^auth/logout/$',
         LogoutUserAPIView.as_view(),
         name='auth_user_logout'),
-    url('^users/(?P<username>.+)/$', SearchUserList.as_view()),
+    url('^users/search/(?P<username>.+)/$', SearchUserList.as_view()),
 
 
     path('users', UserList.as_view()),
