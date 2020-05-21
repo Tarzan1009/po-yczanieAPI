@@ -41,3 +41,4 @@ class Proposition(models.Model):
     isActive = models.BooleanField(default=True)
     monetary = models.ForeignKey(DebtMonetary, null = True, blank = True, on_delete=models.CASCADE)
     item = models.ForeignKey(DebtItem, null=True, blank=True, on_delete=models.CASCADE)
+    toAssign = models.ForeignKey(UserProfile, null=True, blank=True, related_name='assignProposition', on_delete=models.CASCADE)

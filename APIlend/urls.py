@@ -58,5 +58,5 @@ urlpatterns = [
     path('users/<int:pk>/proposition/sender', UserPropositionSender.as_view()),
     path('users/<int:pk>/proposition/receiver', UserPropositionReceiver.as_view()),
 
-    path('current_user', CurrentUser),
+    path('current_user', CurrentUser.as_view()),
 ]

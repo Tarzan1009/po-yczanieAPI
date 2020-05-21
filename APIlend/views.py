@@ -86,8 +86,8 @@ class CurrentUser(generics.ListAPIView):
     serializer_class = UserProfileSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        user_profile = UserProfile.objects.get(user=user)
+        curUser = self.request.user
+        user_profile = UserProfile.objects.filter(user=curUser)
         return user_profile
 
 
